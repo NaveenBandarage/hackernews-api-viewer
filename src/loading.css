@@ -1,0 +1,7 @@
+.wsb-div{
+background-color: rgb(252, 251,252);
+  display: flex !important;
+	justify-content: center;
+    align-items: center;
+        height: 100vh; 
+}
