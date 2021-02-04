@@ -6,45 +6,41 @@ import axios from 'axios';
 import List from "./components/List";
 import { sanitizeUrl } from "@braintree/sanitize-url";
 function App() {
-  const ListLoading = withListLoading(List);
   const [appState, setAppState] = useState({
     loading: true,
     repos: null,
   });
 
-    
-useEffect(() => {
-  let data = null; 
-  let promises = [];
-  const apiUrl = `https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty`;
-  axios.get(apiUrl).then((res)=> {
-    res.data.forEach((id)=>{
-      promises.push(
-        axios.get(
-          sanitizeUrl(
-            `https://hacker-news.firebaseio.com/v0/item/${id}​​​​​.json?print=pretty`
+  useEffect(() => {
+    let data = null;
+    let promises = [];
+    const apiUrl = `https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty`;
+    axios.get(apiUrl).then((res) => {
+      res.data.forEach((id) => {
+        promises.push(
+          axios.get(
+            sanitizeUrl(
+              `https://hacker-news.firebaseio.com/v0/item/${id}​​​​​.json?print=pretty`
+            )
           )
-        )
-      );
-    })
-    Promise.all(promises)
-      .then((res) => {
-        console.log(Object.entries(res));
-        setAppState({ loading: false, repos: res})
-     
-      })
-      .catch((err) => console.log(err));
-  })
-}, []);
+        );
+      });
+      Promise.all(promises)
+        .then((res) => {
+          console.log(Object.entries(res));
+          setAppState({ loading: false, repos: res });
+        })
+        .catch((err) => console.log(err));
+    });
+  }, []);
 
-if(appState.loading){
-  
-  return (
-    <div className="wsb-div">
-      <img src={logo} alt="loading..." />
-    </div>
-  );
-}
+  if (appState.loading) {
+    return (
+      <div className="wsb-div">
+        <img src={logo} alt="loading..." />
+      </div>
+    );
+  }
 
   return (
     <div className="App">
@@ -56,11 +52,10 @@ if(appState.loading){
           .slice(0, 20)
           .map((arr, idx) => {
             return (
-              <ListLoading
+              <List
                 isLoading={appState.loading}
                 repos={arr[1].data}
                 idx={idx}
-                ß
               />
             );
           })}

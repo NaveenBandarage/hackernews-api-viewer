@@ -1,5 +1,4 @@
 import React from "react";
-import WithListLoading from "./withListLoading";
 import "./list.css";
 const List = (props) => {
   const { repos, idx } = props;
@@ -20,4 +19,4 @@ const List = (props) => {
     </div>
   );
 };
-export default WithListLoading(List);
+export default List;
