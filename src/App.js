@@ -4,7 +4,6 @@ import logo from "./wsbgif.gif";
 import "./loading.css";
 import axios from 'axios';
 import List from "./components/List";
-import withListLoading from "./components/withListLoading";
 import { sanitizeUrl } from "@braintree/sanitize-url";
 function App() {
   const ListLoading = withListLoading(List);
