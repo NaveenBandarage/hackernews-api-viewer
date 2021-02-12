@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&display=swap');
 :root {
   --basic-color: #23cc71;
 }
@@ -9,17 +9,20 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-family: 'Amiri', serif;
+font-family: 'Space Grotesk', sans-serif;
   overflow: hidden;
+  background-color: black;
 }
 .container {
   display: flex;
   flex-direction: row;
+  color: white;
 }
 .container h1 {
   font-size: 60px;
   text-align: center;
   color: var(--basic-color);
+  text-decoration: line-through;
 }
 .repo-container {
   width: 70%;
@@ -37,6 +40,7 @@
 }
 .repo-text {
   font-weight: 600;
+  color: white;
 }
 .repo-description {
   font-weight: 600;
@@ -56,9 +60,8 @@
 .footer {
   font-size: 15px;
   font-weight: 600;
+  color: white;
 }
 .list {
   list-style: circle;
 }
-
-

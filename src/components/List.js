@@ -1,12 +1,24 @@
-import React from "react";
 import "./list.css";
+
+import { motion } from "framer-motion";
+import React from "react";
+
 const List = (props) => {
   const { repos, idx } = props;
   return (
-    <div>
+    <motion.div
+      drag
+      dragConstraints={{
+        top: -50,
+        left: -50,
+        right: 50,
+        bottom: 50,
+      }}
+    >
       <ul key={idx}>
         <li key={repos.id} className="list">
           <span className="repo-text">{repos.title + ": "} </span>
+          <br />
           <span className="repo-description">
             {
               <a href={repos.url} target="_blank">
@@ -16,7 +28,7 @@ const List = (props) => {
           </span>
         </li>
       </ul>
-    </div>
+    </motion.div>
   );
 };
 export default List;
