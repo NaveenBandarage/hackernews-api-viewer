@@ -5,7 +5,6 @@ import logo from "./wsbgif.gif";
 import "./loading.css";
 import axios from 'axios';
 import List from "./components/List";
-import { useDimensions } from "./use-dimensions.ts";
 import { sanitizeUrl } from "@braintree/sanitize-url";
 import { MenuToggle } from "./MenuToggle";
 import { Navigation } from "./Navigation";
@@ -19,7 +18,6 @@ function App() {
 
   const [isOpen, toggleOpen] = useCycle(false, true);
   const containerRef = useRef({ width: 0, height: 0 });
-  const { height } = useDimensions(containerRef);
 
   useEffect(() => {
     let data = null;
