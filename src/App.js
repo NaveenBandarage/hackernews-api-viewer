@@ -79,7 +79,6 @@ function App() {
 
   return (
     <div className="App">
-      <CircleIndicator />
       <div className="container">
         <h1>Top Stories Today:</h1>
       </div>
