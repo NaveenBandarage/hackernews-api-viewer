@@ -1,52 +1,50 @@
-import React, { useEffect, useState, useRef } from "react";
-import { motion, useCycle, useViewportScroll } from "framer-motion";
 import "./App.css";
-import logo from "./wsbgif.gif";
 import "./loading.css";
+
+import {sanitizeUrl} from "@braintree/sanitize-url";
 import axios from 'axios';
+import {motion, useCycle, useViewportScroll} from "framer-motion";
+import React, {useEffect, useRef, useState} from "react";
+
 import List from "./components/List";
-import { sanitizeUrl } from "@braintree/sanitize-url";
-import { MenuToggle } from "./MenuToggle";
-import { Navigation } from "./Navigation";
-import { CircleIndicator } from "./scrollthing";
+import {MenuToggle} from "./MenuToggle";
+import {Navigation} from "./Navigation";
+import {CircleIndicator} from "./scrollthing";
+import logo from "./wsbgif.gif";
 
 function App() {
   const [appState, setAppState] = useState({
-    loading: true,
-    repos: null,
+    loading : true,
+    repos : null,
   });
 
   const [isOpen, toggleOpen] = useCycle(false, true);
-  const containerRef = useRef({ width: 0, height: 0 });
+  const containerRef = useRef({width : 0, height : 0});
 
   useEffect(() => {
     let data = null;
     let promises = [];
-    const apiUrl = `https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty`;
+    const apiUrl =
+        `https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty`;
     axios.get(apiUrl).then((res) => {
       res.data.forEach((id) => {
         promises.push(
-          axios.get(
-            sanitizeUrl(
-              `https://hacker-news.firebaseio.com/v0/item/${id}​​​​​.json?print=pretty`
-            )
-          )
-        );
+            axios.get(sanitizeUrl(`https://hacker-news.firebaseio.com/v0/item/${
+                id}​​​​​.json?print=pretty`)));
       });
       Promise.all(promises)
-        .then((res) => {
-          console.log(Object.entries(res));
-          setAppState({ loading: false, repos: res });
-        })
-        .catch((err) => console.log(err));
+          .then((res) => {
+            console.log(Object.entries(res));
+            setAppState({loading : false, repos : res});
+          })
+          .catch((err) => console.log(err));
     });
   }, []);
 
   if (appState.loading) {
     return (
-      <div className="wsb-div">
-        <img src={logo} alt="loading..." />
-      </div>
+        <div className = "wsb-div"><img src = {logo} alt = "loading..." />
+        </div>
     );
   }
 
@@ -79,7 +77,7 @@ function App() {
     <div className="App">
       <div className="container">
         <h1>Top Stories Today:</h1>
-      </div>
+        </div>
       <div className="repo-container">
         {Object.entries(appState.repos)
           .slice(0, 20)
@@ -89,20 +87,19 @@ function App() {
                 isLoading={appState.loading}
                 repos={arr[1].data}
                 idx={idx}
-              />
-            );
-          })}
-      </div>
+              />);
+  })
+}
+</div>
       <footer>
         <div className="footer">
           Built{" "}
           <span role="img" aria-label="love">
             💚
-          </span>{" "}
-          with by Naveen Bandarage
-        </div>
-      </footer>
-    </div>
+          </span>{
+    " "} with by Naveen Bandarage</div>
+      </footer><
+    /div>
   );
 }
 export default App;
