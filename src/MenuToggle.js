@@ -1,5 +1,5 @@
-import * as React from "react";
 import { motion } from "framer-motion";
+import * as React from "react";
 
 const Path = (props) => (
   <motion.path
@@ -22,10 +22,7 @@ export const MenuToggle = ({ toggle }) => (
       />
       <Path
         d="M 2 9.423 L 20 9.423"
-        variants={{
-          closed: { opacity: 1 },
-          open: { opacity: 0 },
-        }}
+        variants={{ closed: { opacity: 1 }, open: { opacity: 0 } }}
         transition={{ duration: 0.1 }}
       />
       <Path

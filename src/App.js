@@ -1,14 +1,16 @@
-import React, { useEffect, useState, useRef } from "react";
-import { motion, useCycle, useViewportScroll } from "framer-motion";
 import "./App.css";
-import logo from "./wsbgif.gif";
 import "./loading.css";
-import axios from 'axios';
-import List from "./components/List";
+
 import { sanitizeUrl } from "@braintree/sanitize-url";
+import axios from "axios";
+import { motion, useCycle, useViewportScroll } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+
+import List from "./components/List";
 import { MenuToggle } from "./MenuToggle";
 import { Navigation } from "./Navigation";
 import { CircleIndicator } from "./scrollthing";
+import logo from "./wsbgif.gif";
 
 function App() {
   const [appState, setAppState] = useState({
