@@ -1,15 +1,14 @@
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 import * as React from "react";
 
 const Path = (props) => (
   <motion.path
-fill = "transparent"
-strokeWidth = "3"
-stroke = "hsl(0, 0%, 18%)"
-strokeLinecap =
-    "round" {
-      ...props
-    } />
+    fill="transparent"
+    strokeWidth="3"
+    stroke="hsl(0, 0%, 18%)"
+    strokeLinecap="round"
+    {...props}
+  />
 );
 
 export const MenuToggle = ({ toggle }) => (
@@ -20,13 +19,11 @@ export const MenuToggle = ({ toggle }) => (
           closed: { d: "M 2 2.5 L 20 2.5" },
           open: { d: "M 3 16.5 L 17 2.5" },
         }}
-      / >
-    < Path
-d = "M 2 9.423 L 20 9.423"
-        variants={
-  { closed: {opacity: 1}, open: {opacity: 0}, }}
-        transition={
-  { duration: 0.1 }}
+      />
+      <Path
+        d="M 2 9.423 L 20 9.423"
+        variants={{ closed: { opacity: 1 }, open: { opacity: 0 } }}
+        transition={{ duration: 0.1 }}
       />
       <Path
         variants={{

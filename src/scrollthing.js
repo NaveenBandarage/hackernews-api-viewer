@@ -1,4 +1,4 @@
-import {motion, useViewportScroll} from "framer-motion";
+import { motion, useViewportScroll } from "framer-motion";
 
 export const CircleIndicator = () => {
   const { scrollYProgress } = useViewportScroll();
