@@ -1,15 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { motion, useCycle, useViewportScroll } from "framer-motion";
 import "./App.css";
 import logo from "./wsbgif.gif";
 import "./loading.css";
 import axios from 'axios';
 import List from "./components/List";
+import { useDimensions } from "./use-dimensions.ts";
 import { sanitizeUrl } from "@braintree/sanitize-url";
+import { MenuToggle } from "./MenuToggle";
+import { Navigation } from "./Navigation";
+import { CircleIndicator } from "./scrollthing";
+
 function App() {
   const [appState, setAppState] = useState({
     loading: true,
     repos: null,
   });
+
+  const [isOpen, toggleOpen] = useCycle(false, true);
+  const containerRef = useRef({ width: 0, height: 0 });
+  const { height } = useDimensions(containerRef);
 
   useEffect(() => {
     let data = null;
@@ -42,8 +52,34 @@ function App() {
     );
   }
 
+  const variants = {
+    open: { opacity: 1, x: 0 },
+    closed: { opacity: 0, x: "-100%" },
+  };
+
+  const sidebar = {
+    open: (height = 1000) => ({
+      clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
+      transition: {
+        type: "spring",
+        stiffness: 20,
+        restDelta: 2,
+      },
+    }),
+    closed: {
+      clipPath: "circle(30px at 40px 40px)",
+      transition: {
+        delay: 0.5,
+        type: "spring",
+        stiffness: 400,
+        damping: 40,
+      },
+    },
+  };
+
   return (
     <div className="App">
+      <CircleIndicator />
       <div className="container">
         <h1>Top Stories Today:</h1>
       </div>

@@ -60,6 +60,7 @@ font-family: 'Space Grotesk', sans-serif;
 .footer {
   font-size: 15px;
   font-weight: 600;
+  color: white;
 }
 .list {
   list-style: circle;
